@@ -71,3 +71,16 @@ configurando scripts no package.json
 
 basicamente fala pro tsx a biblioteca instalada anteriormente  assita o
 server.ts procurando por alteracoes
+
+script para build do projeto
+
+"build": "tsup src --out-dir build"
+
+vai converter todos os arquivos da pasta src pra pasta build
+
+apos converter os arquivos pra js vc pode testar  a funcionalidade
+com comando
+
+"start": "node build/server.js",
+
+executa o serve.js
