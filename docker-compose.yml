@@ -1,0 +1,14 @@
+# docker run --name api-imoveis-pg -e POSTGRESQL_USERNAME=docker -e POSTGRESQL_PASSWORD=docker -e POSTGRESQL_DATABASE=imoveisapi -p 5432:5432 bitnami/postgresql
+
+version: '3' #versao do docker componse
+
+services:
+  api-imoveis-pg:
+    image: bitnami/postgresql #imagem utilizada
+    ports:
+      - 5432:5432 #-p ou porta
+    environment:
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=imoveisapi
+  # variaveis de ambiente utilizadas
