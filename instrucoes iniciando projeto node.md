@@ -144,5 +144,117 @@ export const env = _env.data;
 ```
 apos salvo vc pode importar o env.port ou outra chave pra acessar o valor
 
+configurando imports com alis @/
 
+no tsconfig.json 
+descomente o  "baseUrl": "./",
+e a linha abaixo 
+"paths": {
+      "@/*":["./src/*"]
+    }
+tudo que vier dps do @/ vai ser como-se viesse de dentro da pasta src
+
+
+
+## ORM Prisma
+
+primeiro passo instalar o prisma
+
+npm i prisma -D
+
+pra instalar o prisma  como dependencia de desenvolvimento
+
+dps de instalar vc da
+
+npx prisma init 
+
+vai criar a pasta prisma  e la dentro o schema.prisma onde vc vai colocar suas tabelas
+que vc tera no seu banco de dados
+
+
+model Property {
+  id        String   @id @default(uuid())
+  title     String
+  description String
+  images    String[]
+  rooms     Int
+  value     Float
+
+  @@map("imoveis")
+}
+
+aqui e a sua tabela 
+
+dps disso vc vai usar o 
+
+npx prisma generate pra criar a tipagem do nosso schema
+
+agora nosso codigo typescript vai saber q existe a tabela imoveis e
+os campos q ela possue
+agora q o prisma ja criou o schema 
+vc precisa instalar o 
+
+npm i @prisma/client
+
+esse e uma dependencia de producao utilizado pra acessar o banco de dados 
+quando instalar isso e possivel
+insanciar  e usar os metodos criados pelo negerate
+ex:
+
+const prisma = new PrismaClient();
+
+prisma.property.create({
+    data:{
+        title:'teste'
+    }
+})
+esse foi um exemplo do create mas tbm aparece os outro methodos 
+disponiveis pra model
+
+agora vamos comecar com o banco de dados
+
+
+pra procurar uma imagem do docker pronta vc pode usar o dockerhub
+o repositorio de imagens do docker 
+
+nesse exemplo vamos usar da bitnami/postgresql
+ja que oferece uma camada a mais de seguranca
+
+
+docker run --name
+
+name= como eu quero chamar o banco de dados na minha maquina 
+
+docker run --name api-imoveis-pg(pg e pra indicar postgresql)
+
+docker run --name api-imoveis-pg bitnami/postgresql
+
+bitnami/postgresql e o nome da imagem que eu quero utilizar
+
+agora vou passar variaveis ed ambiente pra ja configurar o ambiente
+ - POSTGRESQL_USERNAME=my_user
+ - POSTGRESQL_PASSWORD=senha
+ - POSTGRESQL_DATABASE=my_database
+ - aqui vamos publicar uma porta 
+ - o -p indica a porta 
+ - o postgresql por padrao roda na porta 5432
+ - o -p 5432:5432 quer dizer pra porta 5432 do postgresql seja 
+ - direcionada pra porta 5432 do host da maquina
+
+docker run --name api-imoveis-pg -e POSTGRESQL_USERNAME=docker -e POSTGRESQL_PASSWORD=docker -e POSTGRESQL_DATABASE=imoveisapi -p 5432:5432 bitnami/postgresql
+
+alterar configuracoes na env
+por padrao o prisma ja gera uma chave no .env
+DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public" padrao
+DATABASE_URL="postgresql://{nomeusuario}:{senha}@localhost:5432/{database}?schema=public" preenchimento campos
+DATABASE_URL="postgresql://docker:docker@localhost:5432/imoveisapi?schema=public" preenchida
+
+apos subir o container  
+executar o 
+npx prisma migrate dev
+
+pra aplicar as mudancas no banco de dados
+
+pra verificar o banco de dados vc pode utilizar o 
+npx prisma studio
 
