@@ -84,3 +84,65 @@ com comando
 "start": "node build/server.js",
 
 executa o serve.js
+
+## Carregando variaveis de ambiente
+
+criar o .env na raiz do projeto
+declarar o NODE_ENV=dev
+
+e criar um arquivo .env.example que sera um exemplo de dados necessarios
+para rodar a aplicação
+
+
+intalar a bibioteca dotenv
+
+npm i dotenv
+
+carregar as variaveis de ambiente dentro do projeto
+
+carrega as informacoes da env pra qualquer arquivo do node
+
+criar o arquivo na pasta src/env/index.ts
+
+importar o (import 'dotenv/config')
+
+pra carregar as variaveis de ambiente e dar acesso a elas dentro do arquivo
+
+agora que ja temos acesso as variaveis de ambiente, vamos fazer a validação
+das mesmas  com a biblioteca zod
+
+npm i zod
+
+validando as variaveis de ambiente 
+
+```
+import 'dotenv/config';
+
+import { z } from 'zod';
+
+const envSchema = z.object({
+	NODE_ENV: z.enum(['dev', 'production', 'test']).default('dev'),
+	PORT: z.coerce.number().default(3333), // converte qualquer valor pra number
+});
+
+const _env = envSchema.safeParse(process.env);
+// safe parse tenta validar se o process.env tem as informacoes
+// que o envSchema esta pedindo caso ao contrario vai dar um
+//thorw error
+if (_env.success === false) {
+	console.error('❌Invalid environment variables', _env.error.format());
+	throw new Error('Invalid environment variables');
+}
+// esse thorw  serve para parar a aplicacao
+//se passar daqui e sucesso
+
+export const env = _env.data;
+
+// apos salvo vc pode importar o env e utilizar as variaveis de ambiente
+// em qualqer lugar da aplicacao
+
+```
+apos salvo vc pode importar o env.port ou outra chave pra acessar o valor
+
+
+
