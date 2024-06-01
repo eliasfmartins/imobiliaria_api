@@ -14,13 +14,12 @@ datasource db {
 }
 
 model Property {
-  id        String   @id @default(uuid())
-  title     String
+  id          String   @id @default(uuid())
+  title       String
   description String
-  images    String[]
-  rooms     Int
-  value     Float
+  images      String[]
+  rooms       String
+  value       String
 
   @@map("imoveis")
 }
-

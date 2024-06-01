@@ -1,20 +1,12 @@
-import { prisma } from '@/app';
+import { listImoveis } from '@/http/controllers/list-imoveis';
+import { register } from '@/http/controllers/register-imoveis';
+import { deleteImoveis } from '@/http/controllers/delete-imoveis';
 import { FastifyInstance } from 'fastify';
+import { updateImoveis } from '@/http/controllers/update-imoveis copy';
 
 export async function imoveisRoutes(app: FastifyInstance) {
-	app.post('/', async (request, reply) => {
-		const imovel = await prisma.property.create({
-			data: {
-				description: 'teste imovel dhr e tals',
-				rooms: 2,
-				title: 'Grande Casa TOpper',
-				value: 500.0,
-				images: ['foto1', 'foto2', 'foto3'],
-			},
-		});
-		return imovel;
-	});
-    app.get('/', (request, reply)=>{
-        return reply.send('Deu certo hahasss').code(200)
-    })
+	app.get('/', listImoveis);
+	app.post('/', register);
+	app.patch('/:id', updateImoveis);
+	app.delete('/:id', deleteImoveis);
 }
