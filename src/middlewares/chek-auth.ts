@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { env } from 'src/env';
+import { env } from '../env';
 import jwt from 'jsonwebtoken';
 
 

@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { prisma } from 'src/server';
+import { prisma } from '../../server';
 import { z } from 'zod';
 
 export const register = async (
