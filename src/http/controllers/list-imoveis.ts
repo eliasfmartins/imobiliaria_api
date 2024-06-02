@@ -1,4 +1,5 @@
-import { prisma } from '@/app';
+import { prisma } from '../../app';
+
 import { FastifyReply, FastifyRequest } from 'fastify';
 
 export const listImoveis = async (

@@ -1,4 +1,4 @@
-import { prisma } from '@/app';
+import { prisma } from '../../app';
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 

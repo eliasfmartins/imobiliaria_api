@@ -1,4 +1,4 @@
-import { prisma } from '@/app';
+import { prisma } from '../../app';
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 
@@ -21,8 +21,8 @@ export const updateImoveis = async (
 		const validatedData = updateBodySchema.parse(request.body);
 
 		const dataToUpdate = Object.fromEntries(
-            Object.entries(validatedData).filter(([_, v]) => v !== undefined)
-        );
+			Object.entries(validatedData).filter(([_, v]) => v !== undefined)
+		);
 		const imovel = await prisma.property.update({
 			where: { id },
 			data: dataToUpdate,
