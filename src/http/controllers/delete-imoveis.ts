@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
+import { prisma } from 'src/server';
 import { z } from 'zod';
-import { prisma } from '../../app';
 
 export const deleteImoveis = async (
 	request: FastifyRequest,

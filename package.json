@@ -5,14 +5,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch src/server.ts",
-    "vercel-build":"npx prisma migrate deploy && prisma generate"
-    
+    "vercel-build": "npx prisma migrate deploy && prisma generate"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20.12.13",
     "globals": "^15.3.0",
     "prisma": "^5.14.0",
@@ -21,9 +21,12 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@fastify/cookie": "^9.3.1",
+    "@fastify/jwt": "^8.0.1",
     "@prisma/client": "^5.14.0",
     "dotenv": "^16.4.5",
     "fastify": "^4.27.0",
+    "jsonwebtoken": "^9.0.2",
     "zod": "^3.23.8"
   }
 }

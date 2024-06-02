@@ -1,5 +1,5 @@
-import { prisma } from '../../app';
 import { FastifyReply, FastifyRequest } from 'fastify';
+import { prisma } from 'src/server';
 import { z } from 'zod';
 
 export const register = async (
@@ -16,6 +16,7 @@ export const register = async (
 	try {
 		const validatedData = registerBodySchema.parse(request.body);
 		const { description, images, rooms, title, value } = validatedData;
+		const { token } = request.cookies;
 
 		const imovel = await prisma.property.create({
 			data: {

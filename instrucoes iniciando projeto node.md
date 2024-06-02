@@ -257,4 +257,9 @@ pra aplicar as mudancas no banco de dados
 
 pra verificar o banco de dados vc pode utilizar o 
 npx prisma studio
+script para deploy vercel
+ "vercel-build":"npx prisma migrate deploy && prisma generate"
 
+implementando jwt no fastify
+
+npm i @fastify/jwt

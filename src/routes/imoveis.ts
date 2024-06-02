@@ -3,11 +3,13 @@ import { listImoveis } from '../http/controllers/list-imoveis';
 import { register } from '../http/controllers/register-imoveis';
 import { updateImoveis } from '../http/controllers/update-imoveis copy';
 import { deleteImoveis } from '../http/controllers/delete-imoveis';
+import { authUser } from 'src/http/controllers/authenticate';
+import { checkAuth } from 'src/middlewares/chek-auth';
 
 export async function imoveisRoutes(app: FastifyInstance) {
-	
 	app.get('/', listImoveis);
-	app.post('/', register);
-	app.patch('/:id', updateImoveis);
-	app.delete('/:id', deleteImoveis);
+	app.post('/auth', authUser);
+	app.post('/', { preHandler: [checkAuth] }, register);
+	app.patch('/:id', { preHandler: [checkAuth] }, updateImoveis);
+	app.delete('/:id', { preHandler: [checkAuth] }, deleteImoveis);
 }
