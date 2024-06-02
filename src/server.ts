@@ -30,3 +30,4 @@ app.listen({
 }).then(() => {
     console.log('🔱 HTTP Server Running! http://localhost:3333');
 });
+export default app;
