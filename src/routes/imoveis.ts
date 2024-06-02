@@ -12,4 +12,5 @@ export async function imoveisRoutes(app: FastifyInstance) {
 	app.post('/', { preHandler: [checkAuth] }, register);
 	app.patch('/:id', { preHandler: [checkAuth] }, updateImoveis);
 	app.delete('/:id', { preHandler: [checkAuth] }, deleteImoveis);
+	
 }
