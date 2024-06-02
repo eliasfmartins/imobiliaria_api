@@ -5,7 +5,10 @@ import { FastifyInstance } from 'fastify';
 import { updateImoveis } from '@/http/controllers/update-imoveis copy';
 
 export async function imoveisRoutes(app: FastifyInstance) {
-	app.get('/', listImoveis);
+	app.get('/', (request, reply) => {
+		return reply.status(200).send({ message: 'deu certo' });
+	});
+	app.get('/imoveis', listImoveis);
 	app.post('/', register);
 	app.patch('/:id', updateImoveis);
 	app.delete('/:id', deleteImoveis);
