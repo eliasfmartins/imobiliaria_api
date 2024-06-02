@@ -14,3 +14,4 @@ app.get('/', (request, reply) => {
 });
 
 app.register(imoveisRoutes,{prefix:'imoveis'})
+//"build": "tsup src --out-dir public && prisma generate",
