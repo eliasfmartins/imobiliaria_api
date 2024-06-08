@@ -3,6 +3,7 @@ import { env } from './env';
 import { imoveisRoutes } from './routes/imoveis';
 import fastifyJwt from '@fastify/jwt';
 import { app } from './app';
+import fastifyCors from '@fastify/cors';
 
 app
 	.listen({
@@ -23,6 +24,11 @@ app.register(fastifyJwt, {
 		signed: true,
 	},
 });
+app.register(fastifyCors, {
+	origin: true, // Permite qualquer origem. Você pode especificar uma lista de origens ou uma função para controle mais granular.
+	credentials: true, // Permite o envio de cookies e cabeçalhos de autorização
+  });
+
 
 app.register(fastifyCookie);
 app.register(imoveisRoutes, { prefix: 'imoveis' });
