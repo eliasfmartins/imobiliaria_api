@@ -8,6 +8,7 @@ export const searchImoveis = async (
 ) => {
   // Definindo o esquema de validação para os parâmetros de pesquisa
   const searchBodySchema = z.object({
+    id: z.string().optional(),
     title: z.string().optional(),   // Título é opcional
     rooms: z.string().optional(),   // Número de quartos é opcional
     minValue: z.string().optional(), // Valor mínimo é opcional
@@ -16,11 +17,17 @@ export const searchImoveis = async (
 
   try {
     // Valida o corpo da requisição
-    const { title, rooms, minValue, maxValue } = searchBodySchema.parse(request.body);
+    const { id, title, rooms, minValue, maxValue } = searchBodySchema.parse(request.body);
 
     // Construindo o filtro de consulta dinamicamente
     const filters: any = {};
 
+    // Adicionando filtro por ID
+    if (id) {
+      filters.id = id;
+    }
+
+    // Adicionando filtro por título
     if (title) {
       filters.title = {
         contains: title,
@@ -28,17 +35,19 @@ export const searchImoveis = async (
       };
     }
 
+    // Adicionando filtro por número de quartos
     if (rooms) {
-      filters.rooms = rooms;
+      filters.rooms = parseInt(rooms, 10);
     }
 
+    // Adicionando filtro por valor mínimo e máximo
     if (minValue || maxValue) {
       filters.value = {};
       if (minValue) {
-        filters.value.gte = minValue;
+        filters.value.gte = parseFloat(minValue);
       }
       if (maxValue) {
-        filters.value.lte = maxValue;
+        filters.value.lte = parseFloat(maxValue);
       }
     }
 
