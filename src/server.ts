@@ -14,14 +14,14 @@ app
 		console.log(`🔱 HTTP Server Running! http://localhost:3333`);
 	});
 app.get('/', (request, reply) => {
-	return reply.status(200).send({ message: 'deu certo' });
+	return reply.status(200).send({ message: 'Estamos On-Line' });
 });
 
 app.register(fastifyJwt, {
 	secret: env.JWT_SECRET,
 	cookie: {
 		cookieName: 'token',
-		signed: true,
+		signed: false,
 	},
 });
 app.register(fastifyCors, {
