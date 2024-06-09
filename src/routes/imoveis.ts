@@ -6,9 +6,11 @@ import { deleteImoveis } from '../http/controllers/delete-imoveis';
 import { authUser } from '../http/controllers/authenticate';
 import { checkAuth } from '../middlewares/chek-auth';
 import { searchImoveis } from '../http/controllers/search-imoveis';
+import { getImovelById } from '../http/controllers/imoveis-id';
 
 export async function imoveisRoutes(app: FastifyInstance) {
 	app.get('/', listImoveis);
+	app.get('/:id', getImovelById);
 	app.post('/search', searchImoveis);
 	app.post('/auth', authUser);
 	app.post('/', { preHandler: [checkAuth] }, register);
