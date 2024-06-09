@@ -20,6 +20,10 @@ model Property {
   images      String[]
   rooms       String
   value       String
+  city        String 
+  bathrooms   String?
+  garages     String?
+  area        String?
 
   @@map("imoveis")
 }
