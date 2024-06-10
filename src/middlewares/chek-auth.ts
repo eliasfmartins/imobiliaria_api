@@ -14,10 +14,10 @@ export const checkAuth = async (request: FastifyRequest, reply: FastifyReply) =>
                 return reply.status(401).send({ error: 'Unauthorized n achei o token x.x',token });
             }
     
-            // const decoded = jwt.verify(token, env.JWT_SECRET);
+            const decoded = jwt.verify(token, env.JWT_SECRET);
     
            
-            // request.user = decoded; 
+            request.user = decoded; 
             return;
         } catch (error) {
             // Se houver algum erro ao verificar o token, retornar um erro de autorização

@@ -30,5 +30,7 @@ app.register(fastifyCors, {
   });
 
 
-app.register(fastifyCookie);
+app.register(fastifyCookie,{
+	parseOptions:{}
+});
 app.register(imoveisRoutes, { prefix: 'imoveis' });
