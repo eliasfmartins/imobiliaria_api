@@ -13,8 +13,8 @@ export async function imoveisRoutes(app: FastifyInstance) {
 	app.get('/:id', getImovelById);
 	app.post('/search', searchImoveis);
 	app.post('/auth', authUser);
-	app.post('/', { preHandler: [checkAuth] }, register);
+	app.post('/', register);
 	app.patch('/:id', { preHandler: [checkAuth] }, updateImoveis);
-	app.delete('/:id', { preHandler: [checkAuth] }, deleteImoveis);
+	app.delete('/:id', deleteImoveis);
 	
 }
