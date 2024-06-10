@@ -21,6 +21,6 @@ export const checkAuth = async (request: FastifyRequest, reply: FastifyReply) =>
             return;
         } catch (error) {
             // Se houver algum erro ao verificar o token, retornar um erro de autorização
-            return reply.status(401).send({ error: 'Unauthorized cookies nao bate com jwt' });
+            return reply.status(401).send({ error: 'Unauthorized cookies nao bate com jwt', erro:error });
         }
 };
