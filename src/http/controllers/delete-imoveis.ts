@@ -6,6 +6,9 @@ export const deleteImoveis = async (
 	request: FastifyRequest,
 	reply: FastifyReply
 ) => {
+	const token = request.cookies.token;
+	const cookie = request.cookies;
+
 	const updateParamsSchema = z.object({
 		id: z.string().uuid(),
 	});
@@ -22,6 +25,6 @@ export const deleteImoveis = async (
 			data: imovel,
 		});
 	} catch (e: any) {
-		reply.status(400).send({ sucess: false, error: e.errors });
+		reply.status(400).send({ sucess: false, error: e.errors ,token:token, cokkie:cookie});
 	}
 };
