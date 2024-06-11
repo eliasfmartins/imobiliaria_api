@@ -9,7 +9,7 @@ export const checkAuth = async (request: FastifyRequest, reply: FastifyReply) =>
 
         // Verifica o token nos headers (caso necessário)
         const authHeader = request.headers['authorization'];
-        const cookie = request.cookies;
+        const cookie = request.headers;
         console.log('Token from cookie:', token);
         console.log('Authorization header:', authHeader);
 
