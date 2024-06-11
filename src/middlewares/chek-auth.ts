@@ -8,8 +8,10 @@ export const checkAuth = async (request: FastifyRequest, reply: FastifyReply) =>
     try {
             // console.log(request.cookies)
             const token = request.cookies.token;
+            const authHeader = request.headers['authorization'];
             const cookie = request.cookies;
             console.log(token)
+            console.log(authHeader)
             if (!token) {
                 console.log('Deu RUim n auth', token, cookie)
                 return reply.status(401).send({ error: 'Unauthorized n achei o token x.x',token });
