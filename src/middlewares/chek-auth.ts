@@ -10,11 +10,13 @@ export const checkAuth = async (request: FastifyRequest, reply: FastifyReply) =>
         // Verifica o token nos headers (caso necessário)
         const authHeader = request.headers['authorization'];
         const cookie = request.headers;
+        const cookie2 = request.headers['cookie'];
+        const cookie3 = request.headers['Cookie'];
         console.log('Token from cookie:', token);
         console.log('Authorization header:', authHeader);
 
         if (!token) {
-            console.log('Token not found in cookies', token, cookie);
+            console.log('Token not found in cookies', token, cookie,cookie2,cookie3);
             return reply.status(401).send({ error: 'Unauthorized: Token not found' });
         }
 
