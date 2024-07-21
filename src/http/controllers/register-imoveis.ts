@@ -16,11 +16,14 @@ export const register = async (
     bathrooms: z.string().optional(),
     garages: z.string().optional(),
     area: z.string().optional(),
+		phone: z.string().optional(),
+    condominium: z.string().optional(),
+    highlight: z.boolean().optional(),
   });
 
   try {
     const validatedData = registerBodySchema.parse(request.body);
-    const { description, images, rooms, title, value, city, bathrooms, garages, area } = validatedData;
+    const { description, images, rooms, title, value, city, bathrooms, garages, area,condominium,highlight,phone } = validatedData;
 
     const imovel = await prisma.property.create({
       data: {
@@ -33,6 +36,9 @@ export const register = async (
         bathrooms,
         garages,
         area,
+				phone,
+        condominium,
+        highlight,
       },
     });
     return reply.status(200).send({

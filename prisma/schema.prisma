@@ -20,10 +20,13 @@ model Property {
   images      String[]
   rooms       String
   value       String
-  city        String 
+  city        String
   bathrooms   String?
   garages     String?
   area        String?
+  phone       String?
+  condominium String?
+  highlight   Boolean  @default(false)
 
   @@map("imoveis")
 }
