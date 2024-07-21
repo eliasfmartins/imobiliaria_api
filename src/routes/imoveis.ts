@@ -7,10 +7,12 @@ import { authUser } from '../http/controllers/authenticate';
 import { checkAuth } from '../middlewares/chek-auth';
 import { searchImoveis } from '../http/controllers/search-imoveis';
 import { getImovelById } from '../http/controllers/imoveis-id';
+import { getHighlightedImoveis } from '../http/controllers/highlight-imoveis';
 
 export async function imoveisRoutes(app: FastifyInstance) {
 	app.get('/', listImoveis);
 	app.get('/:id', getImovelById);
+	app.get('/highlighted', getHighlightedImoveis); 
 	app.post('/search', searchImoveis);
 	app.post('/auth', authUser);
 	app.post('/', { preHandler: [checkAuth] }, register);
